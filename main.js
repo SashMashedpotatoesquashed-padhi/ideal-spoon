@@ -20,6 +20,10 @@ var ball = {
     dx:3,
     dy:3
 }
+rightWristX = 0;
+rightWristY = 0;
+scoreRightWrist = 0;
+game_status = "";
 
 function setup(){
   var canvas =  createCanvas(700,600);
@@ -48,9 +52,15 @@ function gotPoses(results)
     console.log(scoreRightWrist);
   }
 }
-
+function startGame() {
+  game_status = "start";
+  document.getElementById("status").innerHTML="Game is Loaded";
+}
 
 function draw(){
+if(game_status == "start")
+{
+
 
  background(0); 
 
@@ -61,6 +71,12 @@ function draw(){
  fill("black");
  stroke("black");
  rect(0,0,20,700);
+
+ if(scoreRightWrist > 0.2){
+  fill("red");
+  stroke("red");
+  circle(rightWristX, rightWristY , 30); 
+ }
  
    //funtion paddleInCanvas call 
    paddleInCanvas();
@@ -89,6 +105,7 @@ function draw(){
    
    //function move call which in very important
     move();
+}
 }
 
 
